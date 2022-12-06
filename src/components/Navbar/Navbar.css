@@ -3,13 +3,13 @@ nav {
   color: white;
   position: sticky;
   top: 0;
+  z-index: 2;
 }
 
 .nav-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 5.2rem;
 }
 
 .nav-links {
@@ -22,7 +22,7 @@ nav {
 }
 
 .nav-links a {
-  padding: 2rem;
+  padding: 1.2rem;
 }
 
 .nav-links a:hover {
@@ -38,9 +38,18 @@ nav {
   animation: slide-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
+.greet-user {
+  background-color: #fff;
+  color: black;
+  text-align: center;
+}
 
 
 @media (max-width: 768px) {
+
+  .nav-container {
+    padding: 2rem;
+  }
 
   .nav-links-dekstop {
     display: none;

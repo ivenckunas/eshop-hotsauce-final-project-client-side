@@ -6,41 +6,25 @@ import HomePage from './pages/HomePage';
 import ShopPage from './pages/ShopPage';
 import LoginPage from './pages/LoginPage';
 import Footer from './components/Footer/Footer';
-import MainContext from './context/MainContext'
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import CartPage from './pages/CartPage';
 import axios from 'axios';
 import MoreInfo from './components/Shop/MoreInfo';
+import { useDispatch, useSelector } from 'react-redux';
+import { setAllProducts, setIsAdmin } from './store/generalStore';
+import Header from './components/Header/Header';
+import SwiperJs from './components/Swiper/Swiper';
 
 function App() {
 
-  const [loggedIn, setLoggedIn] = useState(false)
-  const [showLinks, setShowLinks] = useState(false)
-  const [isAdmin, setIsAdmin] = useState(false)
-  const [currentUserId, setCurrentUserId] = useState(null)
-  const [currentUserName, setCurrentUserName] = useState(null)
-  const [allProducts, setAllProducts] = useState(null)
-
-  const states = {
-    loggedIn,
-    setLoggedIn,
-    showLinks,
-    setShowLinks,
-    currentUserId,
-    setCurrentUserId,
-    currentUserName,
-    setCurrentUserName,
-    isAdmin,
-    setIsAdmin,
-    allProducts,
-    setAllProducts
-  }
+  const dispatch = useDispatch()
+  const { allProducts, currentUserId, currentUserName } = useSelector(state => state.generalSlice)
 
   useEffect(() => {
 
-    axios.get('http://localhost:4000/all/product')
+    axios.get('http://localhost:4000/product/all')
       .then(resp => {
-        setAllProducts(resp.data.data)
+        dispatch(setAllProducts(resp.data.data))
       })
 
     const userData = {
@@ -51,41 +35,29 @@ function App() {
     axios.post('http://localhost:4000/admin', userData)
       .then(resp => {
         if (resp.data.error === false) {
-          setIsAdmin(true)
+          dispatch(setIsAdmin(true))
         } else {
-          setIsAdmin(false)
+          dispatch(setIsAdmin(false))
         }
       })
       .catch(error => console.log(error))
 
-  }, [currentUserId, currentUserName])
+  }, [dispatch, currentUserName, currentUserId])
 
   return (
     <BrowserRouter>
 
-      <MainContext.Provider value={states}>
+      <Navbar />
 
-        <Navbar />
+      <Routes>
+        <Route path='/' element={<HomePage />} />
+        <Route path='/shop' element={<ShopPage />} />
+        <Route path='/cart' element={<CartPage />} />
+        <Route path='/auth' element={<LoginPage />} />
+        <Route path='/product/single/:id' element={<MoreInfo />} />
+      </Routes>
 
-        <div className="container">
-
-
-          <Routes>
-
-            <Route path='/' element={<HomePage />} />
-            <Route path='/shop' element={<ShopPage />} />
-            <Route path='/cart' element={<CartPage />} />
-            <Route path='/auth' element={<LoginPage />} />
-            <Route path='/all/product/:id' element={<MoreInfo />} />
-
-          </Routes>
-
-
-        </div>
-
-        <Footer />
-
-      </MainContext.Provider>
+      <Footer />
 
     </BrowserRouter >
   );

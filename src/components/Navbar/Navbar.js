@@ -1,34 +1,41 @@
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios'
 import './Navbar.css'
+import { Link, useNavigate } from 'react-router-dom'
 import { FaBars, FaRegWindowClose } from 'react-icons/fa'
 import { FiShoppingCart } from 'react-icons/fi'
-import { useContext } from 'react'
-import MainContext from '../../context/MainContext'
-import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux'
+import { setIsAdmin, setLoggedIn, setShowLinks } from '../../store/generalStore'
 
 
 function Navbar() {
 
   const nav = useNavigate()
+  const dispatch = useDispatch()
+  const {
+    loggedIn,
+    showLinks,
+    cart,
+    currentUserName
+  } = useSelector(state => state.generalSlice)
 
-  const { loggedIn, showLinks, setShowLinks, setLoggedIn, setIsAdmin } = useContext(MainContext)
 
   const showMobileMenu = () => {
-    setShowLinks(true)
+    dispatch(setShowLinks(true))
   }
 
   const closeMobileMenu = () => {
-    setShowLinks(false)
+    dispatch(setShowLinks(false))
   }
 
   const handleLogout = () => {
     axios.post('http://localhost:4000/logout')
-    setLoggedIn(false)
-    setIsAdmin(false)
+    dispatch(setLoggedIn(false))
+    dispatch(setIsAdmin(false))
     nav('/')
     nav(0)
   }
+
 
   return (
     <nav>
@@ -39,7 +46,8 @@ function Navbar() {
           <div className={showLinks ? 'slide-left show-mobile ' : 'nav-links-dekstop'}>
             <Link to={'/'}>Home</Link>
             <Link to={'/shop'}>Shop</Link>
-            {loggedIn ? <Link to={'/cart'}><FiShoppingCart /></Link> : <Link to={'/auth'}>Login</Link>}
+            {loggedIn ?
+              <Link to={'/cart'}><FiShoppingCart /> {cart.length}</Link> : <Link to={'/auth'}>Login</Link>}
             {loggedIn ? <Link onClick={handleLogout}>Logout</Link> : ''}
           </div>
           <div className="nav-links-mobile">
@@ -47,6 +55,7 @@ function Navbar() {
           </div>
         </div>
       </div>
+      {loggedIn && <h4 className='greet-user'> Hello, {currentUserName.split("@")[0].toUpperCase()}</h4>}
     </nav >
   )
 }

@@ -17,7 +17,7 @@ function AddProduct() {
       info: infoRef.current.value
     }
 
-    axios.post('http://localhost:4000/add/product', newProduct)
+    axios.post('http://localhost:4000/product/add', newProduct)
       .then(function (response) {
         console.log(response)
       })

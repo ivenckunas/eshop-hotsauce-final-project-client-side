@@ -1,0 +1,32 @@
+header {
+  height: 80vh;
+  background-image: url(../../images//header.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+header button {
+  padding: 1rem;
+  background-color: hsl(0, 0%, 7%);
+  color: #FFB20C;
+  font-weight: 900;
+  text-transform: uppercase;
+  position: absolute;
+  top: 80%;
+  left: 80%;
+  transform: translate(-70%, -50%);
+}
+
+header button:hover {
+  background-color: hsl(0, 0%, 17%);
+}
+
+@media (max-width: 768px) {
+
+  header {
+    height: 60vh;
+  }
+
+}

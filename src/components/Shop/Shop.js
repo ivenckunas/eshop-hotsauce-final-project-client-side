@@ -1,25 +1,31 @@
 import React from 'react'
 import SingleProduct from './SingleProduct'
 import './Shop.css'
-import { useContext } from 'react'
-import MainContext from '../../context/MainContext'
 import AddProduct from '../AddProduct/AddProduct'
+import { useSelector } from 'react-redux'
+import Filter from '../Filter/Filter'
+
 
 
 function Shop() {
 
-  const { isAdmin, allProducts } = useContext(MainContext)
 
+  const { isAdmin, allProducts } = useSelector(state => state.generalSlice)
 
 
   return (
-    <div>
+    <div className='container'>
       {isAdmin ? <AddProduct /> : ''}
-      <div className="shop  ">
+
+      <Filter />
+
+      <div className="shop">
         {allProducts && allProducts.map((product, id) => {
           return <SingleProduct key={id} id={id} product={product} />
         })}
+
       </div>
+
     </div>
   )
 }
