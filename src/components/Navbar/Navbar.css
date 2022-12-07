@@ -1,6 +1,7 @@
 nav {
-  background-color: hsl(218, 100%, 16%);
-  color: white;
+  background-color: var(--bgBlack);
+  color: var(--textWhite);
+  text-transform: uppercase;
   position: sticky;
   top: 0;
   z-index: 2;
@@ -12,9 +13,16 @@ nav {
   align-items: center;
 }
 
+.nav-logo {
+  height: 60px;
+  margin: 0.5rem 0;
+}
+
 .nav-links {
   display: flex;
   gap: 1rem;
+  font-size: 1rem;
+  font-weight: 700;
 }
 
 .nav-links-dekstop {
@@ -26,7 +34,7 @@ nav {
 }
 
 .nav-links a:hover {
-  background-color: hsl(218, 100%, 32%);
+  background-color: var(--hoverBlack);
 }
 
 .nav-bars,
@@ -39,9 +47,10 @@ nav {
 }
 
 .greet-user {
-  background-color: #fff;
+  background-color: var(--textYellow);
   color: black;
   text-align: center;
+  margin-bottom: 0;
 }
 
 
@@ -51,12 +60,18 @@ nav {
     padding: 2rem;
   }
 
+  .nav-logo {
+    height: 40px;
+    margin: 0.2rem 0;
+  }
+
   .nav-links-dekstop {
     display: none;
   }
 
   .nav-bars,
   .nav-close {
+    font-size: 2rem;
     display: block;
     position: relative;
     transition: 0.3s;

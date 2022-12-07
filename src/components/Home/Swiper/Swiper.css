@@ -1,0 +1,20 @@
+.single-swiper-item {
+  padding: 2rem;
+  text-align: center;
+}
+
+.single-swiper-item:hover {
+  cursor: pointer;
+}
+
+.single-swiper-item img {
+  height: 360px;
+}
+
+@media (max-width: 768px) {
+
+  .single-swiper-item img {
+    height: 200px;
+  }
+
+}

@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import axios from "axios";
 import './Auth.css'
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setCurrentUserId, setCurrentUserName, setLoggedIn } from "../../store/generalStore";
 
@@ -10,34 +10,9 @@ function Auth() {
   const dispatch = useDispatch()
   const nav = useNavigate()
 
-  const emailRef = useRef();
-  const pswRef = useRef();
-  const pswRepeatRef = useRef();
   const loginEmailRef = useRef();
   const loginPswRef = useRef();
 
-  const register = () => {
-    const userObj = {
-      email: emailRef.current.value,
-      password: pswRef.current.value,
-      paswordRepeat: pswRepeatRef.current.value,
-    };
-
-    axios
-      .post("http://localhost:4000/register", userObj)
-      .then(function (response) {
-        if (response.data.error === false) {
-          dispatch(setCurrentUserName(response.data.data.email));
-          dispatch(setCurrentUserId(response.data.data._id));
-          dispatch(setLoggedIn(true));
-          // setCurrentUser(response.data.email)
-          nav('/')
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
 
   const login = () => {
     const userObj = {
@@ -49,6 +24,7 @@ function Auth() {
       .post("http://localhost:4000/login", userObj)
       .then(function (response) {
         if (response.data.error === false) {
+          localStorage.setItem('userInfo', JSON.stringify(response.data))
           dispatch(setCurrentUserName(response.data.data.email));
           dispatch(setCurrentUserId(response.data.data._id));
           dispatch(setLoggedIn(true))
@@ -61,22 +37,14 @@ function Auth() {
   };
 
   return (
-    <div className="container">
-      <div className="auth-container">
-        <div className="register">
-          <h2>Register</h2>
-          <input ref={emailRef} type="text" placeholder="email" />
-          <input ref={pswRef} type="password" placeholder="password" required />
-          <input ref={pswRepeatRef} type="password" placeholder="repeat password" required />
-          <button onClick={register}>Register</button>
-        </div>
-        <div className="login">
-          <h2>Login</h2>
-          <input ref={loginEmailRef} type="email" placeholder="user email" required />
-          <input ref={loginPswRef} type="password" placeholder="password" required />
-          <button onClick={login}>Login</button>
-        </div>
+    <div className="container login-container">
+      <div className="login">
+        <h2>LOGIN</h2>
+        <input ref={loginEmailRef} type="email" placeholder="user email" required />
+        <input ref={loginPswRef} type="password" placeholder="password" required />
+        <button className="login-btn" onClick={login}>Login</button>
       </div>
+      <Link className="register-link" to={'/register'}>Don't have an account? Register here</Link>
     </div>
   );
 }

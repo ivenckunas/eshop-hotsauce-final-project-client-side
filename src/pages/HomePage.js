@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import Home from '../components/Home/Home'
-import SwiperJs from '../components/Swiper/Swiper'
+import Home from '../components/Home/Home/Home'
+import SwiperJs from '../components/Home/Swiper/Swiper'
 
 function HomePage() {
 

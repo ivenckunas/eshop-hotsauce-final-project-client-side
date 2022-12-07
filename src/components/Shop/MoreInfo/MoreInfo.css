@@ -1,0 +1,57 @@
+.more-info img {
+  height: 100%;
+}
+
+.more-info {
+  padding: 2rem 0;
+  display: flex;
+  align-items: center;
+}
+
+.more-info-img {
+  flex-basis: 40%;
+}
+
+.more-info-text {
+  flex-basis: 60%;
+}
+
+.more-info-text h2 {
+  text-transform: uppercase;
+  font-size: 2rem;
+}
+
+.more-info-text p {
+  padding: 1rem 0;
+}
+
+.more-info-price {
+  font-weight: 900;
+  font-size: 1.5rem;
+}
+
+.more-info-add-btn {
+  margin-right: 0.5rem;
+  border-radius: 0;
+  padding: 0.5rem;
+  text-transform: uppercase;
+  background: var(--textYellow);
+  font-weight: 900;
+}
+
+.more-info-add-btn:hover {
+  background-color: hsl(46, 100%, 45%);
+}
+
+.more-info-edit-btn {
+  border-radius: 0;
+  padding: 0.5rem;
+  text-transform: uppercase;
+  background: #c01010;
+  color: var(--textWhite);
+  font-weight: 900;
+}
+
+.more-info-edit-btn:hover {
+  background-color: hsl(0, 85%, 30%);
+}

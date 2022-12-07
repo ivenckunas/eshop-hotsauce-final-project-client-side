@@ -1,0 +1,9 @@
+.error-message {
+  text-align: center;
+  padding: 1rem;
+  width: 100%;
+  color: var(--textWhite);
+  font-weight: 900;
+  text-transform: uppercase;
+  background-color: #C01010;
+}

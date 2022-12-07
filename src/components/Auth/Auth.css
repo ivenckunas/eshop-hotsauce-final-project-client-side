@@ -1,4 +1,37 @@
-.auth-container {
+.login-container {
+  height: 80vh;
+  padding: 2rem 0;
+}
+
+.login {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin: 2rem auto;
+}
+
+.login input {
+  padding: 0.5rem;
+  margin: 0.3rem 0;
+}
+
+.login input::placeholder {
+  text-transform: uppercase;
+}
+
+.login-btn {
+  background-color: var(--bgBlack);
+  color: var(--textWhite);
+  border-radius: 0;
+  padding: 0.5rem;
+  text-transform: uppercase;
+}
+
+.login-btn:hover {
+  background-color: var(--hoverBlack);
+}
+
+.register-link {
   display: flex;
   justify-content: space-around;
 }

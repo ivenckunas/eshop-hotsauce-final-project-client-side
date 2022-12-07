@@ -1,0 +1,32 @@
+.register-container {
+  height: 80vh;
+  padding: 2rem 0;
+}
+
+.register {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin: 2rem auto;
+}
+
+.register input {
+  padding: 0.5rem;
+  margin: 0.3rem 0;
+}
+
+.register input::placeholder {
+  text-transform: uppercase;
+}
+
+.register-btn {
+  background-color: var(--bgBlack);
+  color: var(--textWhite);
+  border-radius: 0;
+  padding: 0.5rem;
+  text-transform: uppercase;
+}
+
+.register-btn:hover {
+  background-color: var(--hoverBlack);
+}

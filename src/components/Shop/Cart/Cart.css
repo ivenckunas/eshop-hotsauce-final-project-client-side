@@ -1,0 +1,37 @@
+.cart-container {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.cart-container img {
+  height: 150px;
+}
+
+.cart-total-sidebar {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+.cart-item-card {
+  margin: 0 auto;
+  width: 50%;
+  position: relative;
+  border-bottom: 1px solid slategray;
+
+}
+
+.cart-item-price {
+  position: absolute;
+  font-weight: 700;
+  bottom: 0;
+  right: 0;
+}
+
+.cart-item-remove-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 2rem;
+  color: #c01010;
+}

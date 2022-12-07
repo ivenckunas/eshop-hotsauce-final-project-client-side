@@ -9,7 +9,10 @@ export const generalSlice = createSlice({
     currentUserId: null,
     currentUserName: '',
     allProducts: null,
-    cart: [],
+    cart: JSON.parse(localStorage.getItem('cart')) || [],
+    swiperArray: null,
+    productToEdit: {},
+    errorMessage: null
   },
 
   reducers: {
@@ -33,11 +36,20 @@ export const generalSlice = createSlice({
     },
     setCart: (state, action) => {
       state.cart = action.payload
+    },
+    setSwiperArray: (state, action) => {
+      state.swiperArray = action.payload
+    },
+    setProductToEdit: (state, action) => {
+      state.productToEdit = action.payload
+    },
+    setErrorMessage: (state, action) => {
+      state.errorMessage = action.payload
     }
   }
 }
 )
 
-export const { setLoggedIn, setShowLinks, setIsAdmin, setCurrentUserId, setCurrentUserName, setAllProducts, setCart } = generalSlice.actions
+export const { setLoggedIn, setShowLinks, setIsAdmin, setCurrentUserId, setCurrentUserName, setAllProducts, setCart, setSwiperArray, setProductToEdit, setErrorMessage } = generalSlice.actions
 
 export default generalSlice.reducer

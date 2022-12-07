@@ -1,0 +1,35 @@
+.single-product {
+  transition: 0.2s;
+}
+
+.single-product:hover {
+  cursor: pointer;
+}
+
+.single-product img {
+  transition: 1s;
+}
+
+.single-product:hover img {
+  transform: scale(1.05);
+}
+
+.single-product h2 {
+  margin: 0 auto;
+  max-width: 70%;
+  padding: 0.3rem;
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.single-product-add-btn {
+  border-radius: 0;
+  padding: 0.5rem;
+  text-transform: uppercase;
+  background-color: var(--textYellow);
+  font-weight: 900;
+}
+
+.single-product-add-btn:hover {
+  background-color: hsl(46, 100%, 45%);
+}

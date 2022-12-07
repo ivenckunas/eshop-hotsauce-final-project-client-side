@@ -6,7 +6,7 @@ import { FaBars, FaRegWindowClose } from 'react-icons/fa'
 import { FiShoppingCart } from 'react-icons/fi'
 import { useDispatch, useSelector } from 'react-redux'
 import { setIsAdmin, setLoggedIn, setShowLinks } from '../../store/generalStore'
-
+import logo from '../../images/logo.png'
 
 function Navbar() {
 
@@ -14,6 +14,7 @@ function Navbar() {
   const dispatch = useDispatch()
   const {
     loggedIn,
+    isAdmin,
     showLinks,
     cart,
     currentUserName
@@ -29,7 +30,8 @@ function Navbar() {
   }
 
   const handleLogout = () => {
-    axios.post('http://localhost:4000/logout')
+    localStorage.removeItem('userInfo')
+    localStorage.removeItem('cart')
     dispatch(setLoggedIn(false))
     dispatch(setIsAdmin(false))
     nav('/')
@@ -40,12 +42,13 @@ function Navbar() {
   return (
     <nav>
       <div className='nav-container container'>
-        <Link to="/">Logo</Link>
+        <Link to="/">
+          <img className='nav-logo' src={logo} alt="" />
+        </Link>
         <div className='nav-links' >
-
           <div className={showLinks ? 'slide-left show-mobile ' : 'nav-links-dekstop'}>
             <Link to={'/'}>Home</Link>
-            <Link to={'/shop'}>Shop</Link>
+            {isAdmin ? <Link to={'/shop'}>Add product</Link> : <Link to={'/shop'}>Shop</Link>}
             {loggedIn ?
               <Link to={'/cart'}><FiShoppingCart /> {cart.length}</Link> : <Link to={'/auth'}>Login</Link>}
             {loggedIn ? <Link onClick={handleLogout}>Logout</Link> : ''}

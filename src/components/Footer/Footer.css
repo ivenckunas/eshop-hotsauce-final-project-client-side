@@ -1,7 +1,7 @@
 footer {
   height: 10rem;
-  background-color: hsl(218, 100%, 16%);
-  color: white;
+  background-color: var(--bgBlack);
+  color: var(--textWhite);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,14 +13,15 @@ footer {
   align-items: center;
 }
 
-ul {
+.footer-social-links ul {
   margin: 0;
   padding: 0;
   display: flex;
+  gap: 1rem;
   justify-content: center;
   list-style: none;
 }
 
-ul li {
-  font-size: 2rem;
+.footer-social-links ul li:hover {
+  cursor: pointer;
 }

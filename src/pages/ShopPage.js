@@ -1,13 +1,9 @@
 import React from 'react'
-import Shop from '../components/Shop/Shop'
-
+import Shop from '../components/Shop/Shop/Shop'
 
 function ShopPage() {
   return (
-
     <Shop />
-
-
   )
 }
 
