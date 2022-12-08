@@ -29,7 +29,6 @@ function Edit() {
       .then(response => {
         const { data: { data } } = response
         dispatch(setProductToEdit(data))
-        console.log('data ===', data);
         setTitleVal(data.title)
         setImageVal(data.image)
         setPriceVal(data.price)

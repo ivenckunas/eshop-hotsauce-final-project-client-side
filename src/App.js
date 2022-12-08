@@ -11,7 +11,7 @@ import Footer from './components/Footer/Footer';
 import CartPage from './pages/CartPage';
 import axios from 'axios';
 import MoreInfo from './components/Shop/MoreInfo/MoreInfo';
-import { setAllProducts, setCurrentUserId, setCurrentUserName, setIsAdmin, setLoggedIn } from './store/generalStore';
+import { setAllProducts, setCurrentUserId, setCurrentUserName, setIsAdmin, setLoggedIn, setProductToEdit } from './store/generalStore';
 import RegisterPage from './pages/RegisterPage';
 import EditPage from './pages/EditPage';
 
@@ -20,7 +20,7 @@ import EditPage from './pages/EditPage';
 function App() {
 
   const dispatch = useDispatch()
-  const { cart, currentUserId, currentUserName } = useSelector(state => state.generalSlice)
+  const { cart, currentUserId, currentUserName, productToEdit } = useSelector(state => state.generalSlice)
 
 
   useEffect(() => {
@@ -33,11 +33,6 @@ function App() {
       dispatch(setCurrentUserId(userInfo.data._id));
       dispatch(setLoggedIn(true))
     }
-
-    axios.get('http://localhost:4000/product/all')
-      .then(resp => {
-        dispatch(setAllProducts(resp.data.data))
-      })
 
     const userData = {
       id: currentUserId,
@@ -54,7 +49,12 @@ function App() {
       })
       .catch(error => console.log(error))
 
-  }, [dispatch, currentUserName, currentUserId, cart])
+    axios.get('http://localhost:4000/product/all')
+      .then(resp => {
+        dispatch(setAllProducts(resp.data.data))
+      })
+
+  }, [dispatch, currentUserName, currentUserId, cart, productToEdit])
 
   return (
     <BrowserRouter>

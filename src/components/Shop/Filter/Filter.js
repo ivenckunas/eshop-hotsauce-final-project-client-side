@@ -21,9 +21,14 @@ function Filter() {
     dispatch(setAllProducts(sorted))
   }
 
+  const searchBarFilter = (e) => {
+
+
+  }
+
   return (
     <div className='filter-container'>
-      <input className='filter-searchbar' type="search" name="" id="" placeholder='search for a product' />
+      <input onChange={searchBarFilter} className='filter-searchbar' type="search" name="" id="" placeholder='search for a product' />
       <small>
         <button onClick={sortAsc}>lower price first</button>
         <button onClick={sortDesc}>higher price first</button>

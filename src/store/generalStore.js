@@ -12,7 +12,7 @@ export const generalSlice = createSlice({
     cart: JSON.parse(localStorage.getItem('cart')) || [],
     swiperArray: null,
     productToEdit: {},
-    errorMessage: null
+    errorMessage: null,
   },
 
   reducers: {
@@ -45,7 +45,7 @@ export const generalSlice = createSlice({
     },
     setErrorMessage: (state, action) => {
       state.errorMessage = action.payload
-    }
+    },
   }
 }
 )
