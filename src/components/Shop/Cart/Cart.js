@@ -1,7 +1,6 @@
 import React from 'react'
 import './Cart.css'
 import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { setCart } from '../../../store/generalStore'
 import { TiDeleteOutline } from 'react-icons/ti'
@@ -10,7 +9,6 @@ import { ToastContainer, toast } from 'react-toastify';
 function Cart() {
 
   const dispatch = useDispatch()
-  const nav = useNavigate()
   const { cart } = useSelector(state => state.generalSlice)
   const itemRemovedFromCart = () => toast.error("Item removed from cart");
 
@@ -23,7 +21,7 @@ function Cart() {
     dispatch(setCart(filtered))
     if (filtered.length === 0) {
       localStorage.removeItem('cart')
-      nav('/')
+
     }
   }
 
@@ -42,6 +40,7 @@ function Cart() {
       />
 
       <div className="cart-items">
+        {!cart.length && <h2>Cart is empty</h2>}
         {cart && cart.map((item, id) => {
           return <div className='cart-item-card' key={id}>
             <img src={item.image} alt="cart item of hot sauce" />
@@ -54,11 +53,13 @@ function Cart() {
           </div>
         })}
       </div>
-      <div className="cart-total-sidebar">
-        <h3>items in the cart: {cart.length}</h3>
-        <h3>total price: {totalPrice.toFixed(2)}$</h3>
-        <button>proceed to checkout</button>
-      </div>
+      {cart.length > 0 &&
+        <div className="cart-total-sidebar">
+          <h3>items in the cart: {cart.length}</h3>
+          <h3>total price: {totalPrice.toFixed(2)}$</h3>
+          <button>proceed to checkout</button>
+        </div>
+      }
     </div>
   )
 }

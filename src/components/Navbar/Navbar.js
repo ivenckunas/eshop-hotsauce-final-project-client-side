@@ -30,12 +30,9 @@ function Navbar() {
   }
 
   const handleLogout = () => {
-    localStorage.removeItem('userInfo')
-    localStorage.removeItem('cart')
-    dispatch(setLoggedIn(false))
+    window.localStorage.clear()
+    window.location.href('/')
     dispatch(setIsAdmin(false))
-    nav('/')
-    nav(0)
   }
 
 

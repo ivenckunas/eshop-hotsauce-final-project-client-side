@@ -11,6 +11,19 @@
   height: 360px;
 }
 
+.swiper-button-prev,
+.swiper-button-next {
+  background-color: var(--bgBlack);
+  padding: 1.2rem;
+  border-radius: 50%;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  color: var(--textWhite);
+  font-size: 20px !important;
+}
+
 @media (max-width: 768px) {
 
   .single-swiper-item img {

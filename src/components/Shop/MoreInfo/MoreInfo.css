@@ -43,15 +43,18 @@
   background-color: hsl(46, 100%, 45%);
 }
 
-.more-info-edit-btn {
+.more-info-edit-btn,
+.more-info-delete-btn {
   border-radius: 0;
   padding: 0.5rem;
   text-transform: uppercase;
   background: #c01010;
   color: var(--textWhite);
   font-weight: 900;
+  margin-right: 0.5rem;
 }
 
-.more-info-edit-btn:hover {
+.more-info-edit-btn:hover,
+.more-info-delete-btn:hover {
   background-color: hsl(0, 85%, 30%);
 }

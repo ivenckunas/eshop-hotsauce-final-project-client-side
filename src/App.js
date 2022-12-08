@@ -20,7 +20,7 @@ import EditPage from './pages/EditPage';
 function App() {
 
   const dispatch = useDispatch()
-  const { cart, currentUserId, currentUserName, allProducts } = useSelector(state => state.generalSlice)
+  const { cart, currentUserId, currentUserName } = useSelector(state => state.generalSlice)
 
 
   useEffect(() => {
@@ -54,7 +54,7 @@ function App() {
       })
       .catch(error => console.log(error))
 
-  }, [dispatch, setAllProducts, currentUserName, currentUserId, cart])
+  }, [dispatch, currentUserName, currentUserId, cart])
 
   return (
     <BrowserRouter>

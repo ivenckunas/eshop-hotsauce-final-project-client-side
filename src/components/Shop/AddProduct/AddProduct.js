@@ -31,6 +31,7 @@ function AddProduct() {
 
   return (
     <div className="container add-product-container">
+      <h2>ADD NEW PRODUCT</h2>
       <input ref={imageRef} type="url" placeholder='photo' />
       <input ref={titleRef} type="text" placeholder='title' />
       <input ref={priceRef} type="number" placeholder='price' />

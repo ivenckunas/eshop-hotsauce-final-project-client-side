@@ -45,6 +45,10 @@ function MoreInfo() {
     nav(`/product/edit/${id}`)
   }
 
+  const handleDelete = (id) => {
+    console.log(id)
+  }
+
   return (
     <div className='container '>
 
@@ -74,9 +78,18 @@ function MoreInfo() {
             <p className='more-info-price'>${singleProduct.price.toFixed(2)}</p>
             {loggedIn ? <button className='more-info-add-btn' onClick={addToCart}>add to cart</button> : <button className='more-info-add-btn' onClick={redirect}>Log in to buy</button>}
 
-            {isAdmin && <button onClick={() => {
-              handleEdit(singleProduct._id)
-            }} className='more-info-edit-btn'>edit item</button>}
+            {isAdmin &&
+              <div>
+                <button onClick={() => {
+                  handleEdit(singleProduct._id)
+                }} className='more-info-edit-btn'>edit item</button>
+
+                <button onClick={() => {
+                  handleDelete(singleProduct._id)
+                }} className='more-info-delete-btn'>delete item
+                </button>
+              </div>
+            }
           </div>
 
         </div>

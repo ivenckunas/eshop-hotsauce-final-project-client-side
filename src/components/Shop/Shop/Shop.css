@@ -2,7 +2,7 @@
   display: grid;
   align-items: center;
   justify-content: space-between;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
 }
 
@@ -21,6 +21,14 @@ img {
   margin-right: auto;
   margin-left: auto;
   object-fit: cover;
+}
+
+@media (max-width: 900px) and (min-width:769px) {
+
+  .shop {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
 }
 
 @media (max-width: 768px) {
