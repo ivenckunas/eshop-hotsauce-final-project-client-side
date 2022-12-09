@@ -1,16 +1,14 @@
 import React from 'react'
-import axios from 'axios'
 import './Navbar.css'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { FaBars, FaRegWindowClose } from 'react-icons/fa'
 import { FiShoppingCart } from 'react-icons/fi'
 import { useDispatch, useSelector } from 'react-redux'
-import { setIsAdmin, setLoggedIn, setShowLinks } from '../../store/generalStore'
+import { setIsAdmin, setShowLinks } from '../../store/generalStore'
 import logo from '../../images/logo.png'
 
 function Navbar() {
 
-  const nav = useNavigate()
   const dispatch = useDispatch()
   const {
     loggedIn,
@@ -45,7 +43,8 @@ function Navbar() {
         <div className='nav-links' >
           <div className={showLinks ? 'slide-left show-mobile ' : 'nav-links-dekstop'}>
             <Link to={'/'}>Home</Link>
-            {isAdmin ? <Link to={'/shop'}>Add product</Link> : <Link to={'/shop'}>Shop</Link>}
+            {isAdmin && <Link to={'/product/add'}>Add product</Link>}
+            <Link to={'/shop'}>Shop</Link>
             {loggedIn ?
               <Link to={'/cart'}><FiShoppingCart /> {cart.length}</Link> : <Link to={'/auth'}>Login</Link>}
             {loggedIn ? <Link onClick={handleLogout}>Logout</Link> : ''}

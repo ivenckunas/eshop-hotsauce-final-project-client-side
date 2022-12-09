@@ -1,16 +1,13 @@
 import "./MoreInfo.css";
 import React from "react";
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { setAllProducts, setCart, setShowReviews } from "../../../store/generalStore";
 import { ToastContainer, toast } from "react-toastify";
+import { useRef } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import SwiperJs from "../../Home/Swiper/Swiper";
-import axios from "axios";
-import { useRef } from "react";
 import io from 'socket.io-client'
-import LiveChat from "../../LiveChat/LiveChat";
 
 
 const socket = io('http://localhost:4000');
@@ -47,16 +44,17 @@ function MoreInfo() {
   };
 
   const handleDelete = (id) => {
-    const productToDelete = {
-      id,
-    };
     if (window.confirm("Are you sure want to delete this item?")) {
-      axios
-        .post("http://localhost:4000/product/delete", productToDelete)
-        .then((response) => {
-          if (response.data.error === false) nav("/");
-        })
-        .catch((error) => console.log(error));
+      socket.emit('deleteProduct', id)
+      socket.emit('allProducts')
+      socket.on('allProducts', data => {
+        dispatch(setAllProducts(data))
+      })
+
+      setTimeout(() => {
+        nav('/shop')
+      }, 500);
+
     }
   };
 
@@ -77,6 +75,8 @@ function MoreInfo() {
     }
 
     socket.emit('review', reviewObj)
+
+    revievRef.current.value = ''
 
   }
 
@@ -146,8 +146,6 @@ function MoreInfo() {
           </div>
         </div>
       )}
-
-      <LiveChat />
 
       <hr />
       <h2>You may also like:</h2>

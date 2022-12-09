@@ -1,17 +1,30 @@
 import React from "react";
 import SingleProduct from "../SingleProduct/SingleProduct";
 import "./Shop.css";
-import AddProduct from "../AddProduct/AddProduct";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Filter from "../Filter/Filter";
+import { useEffect } from "react";
+import io from "socket.io-client";
+import { setAllProducts } from "../../../store/generalStore";
+
+const socket = io("http://localhost:4000");
+
 
 function Shop() {
 
-  const { isAdmin, allProducts } = useSelector((state) => state.generalSlice);
+  const dispatch = useDispatch()
+  const { allProducts } = useSelector((state) => state.generalSlice);
+
+  useEffect(() => {
+    socket.emit('allProducts')
+    socket.on('allProducts', data => {
+      dispatch(setAllProducts(data))
+    })
+  }, [])
+
 
   return (
     <div>
-      {isAdmin && <AddProduct />}
       <div className="container">
         <Filter />
         <div className="shop ">

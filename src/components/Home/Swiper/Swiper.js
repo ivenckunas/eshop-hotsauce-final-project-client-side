@@ -42,7 +42,7 @@ function SwiperJs() {
         {swiperArray.map((item, id) => {
           return <SwiperSlide onClick={() => navigateToSingleProduct(item._id)} key={id} className='single-swiper-item'>
             <img src={item.image} alt="" />
-            <h3>{item.price}$</h3>
+            <h3>${item.price.toFixed(2)}</h3>
           </SwiperSlide>
         })}
 

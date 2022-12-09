@@ -1,4 +1,3 @@
-import axios from 'axios'
 import React from 'react'
 import { useRef } from 'react'
 import { useState } from 'react'
@@ -7,6 +6,9 @@ import { useDispatch } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { setProductToEdit } from '../../../store/generalStore'
 import './Edit.css'
+import io from "socket.io-client";
+
+const socket = io("http://localhost:4000");
 
 function Edit() {
 
@@ -25,16 +27,15 @@ function Edit() {
 
   useEffect(() => {
 
-    axios.post(`http://localhost:4000/product/edit/${id}`, id)
-      .then(response => {
-        const { data: { data } } = response
-        dispatch(setProductToEdit(data))
-        setTitleVal(data.title)
-        setImageVal(data.image)
-        setPriceVal(data.price)
-        setInfoVal(data.info)
-      })
-      .catch(error => console.log(error))
+    socket.emit('editProduct', id)
+
+    socket.on('editProduct', data => {
+      dispatch(setProductToEdit(data))
+      setTitleVal(data.title)
+      setImageVal(data.image)
+      setPriceVal(data.price)
+      setInfoVal(data.info)
+    })
 
   }, [])
 
@@ -48,20 +49,10 @@ function Edit() {
       info: oldInfoVal,
     }
 
-    console.log('updatedProduct ===', updatedProduct);
-
-    if (titleRef.current.value && imageRef.current.value && priceRef.current.value && infoRef.current.value)
-      axios.post('http://localhost:4000/product/update', updatedProduct)
-        .then(response => {
-          if (response.data.error === false) {
-            nav('/shop')
-            setTitleVal('')
-            setImageVal('')
-            setPriceVal('')
-            setInfoVal('')
-          }
-        })
-        .catch(error => console.log(error))
+    if (titleRef.current.value && imageRef.current.value && priceRef.current.value && infoRef.current.value) {
+      socket.emit('updateProduct', updatedProduct)
+      nav('/shop')
+    }
   }
 
   return (

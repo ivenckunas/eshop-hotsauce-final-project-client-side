@@ -1,10 +1,16 @@
 import './AddProduct.css'
-import axios from 'axios';
 import React, { useRef } from 'react'
+import io from "socket.io-client";
+import { setAllProducts } from '../../../store/generalStore';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
+const socket = io("http://localhost:4000");
 
 function AddProduct() {
 
-
+  const dispatch = useDispatch()
+  const nav = useNavigate()
   const imageRef = useRef()
   const titleRef = useRef()
   const priceRef = useRef()
@@ -18,14 +24,18 @@ function AddProduct() {
       info: infoRef.current.value
     }
 
-    if (imageRef.current.value && titleRef.current.value && priceRef.current.value && infoRef.current.value)
-      axios.post('http://localhost:4000/product/add', newProduct)
-        .then(function (response) {
-          console.log(response)
-        })
-        .catch(function (error) {
-          console.log(error)
-        })
+    if (imageRef.current.value && titleRef.current.value && priceRef.current.value && infoRef.current.value) {
+      socket.emit('addProduct', newProduct)
+      socket.emit('allProducts')
+      socket.on('allProducts', data => {
+        dispatch(setAllProducts(data))
+      })
+
+      setTimeout(() => {
+        nav('/shop')
+      }, 1000);
+
+    }
   }
 
 

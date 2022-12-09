@@ -2,7 +2,10 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { setAllProducts } from '../../../store/generalStore';
 import './Filter.css'
+import io from 'socket.io-client'
 
+
+const socket = io('http://localhost:4000');
 
 function Filter() {
 
@@ -23,8 +26,19 @@ function Filter() {
 
   const searchBarFilter = (e) => {
 
+    const searchWord = e.target.value.toLowerCase();
+
+    socket.emit('searchProducts', searchWord)
+
+    socket.on('searchProducts', data => {
+      dispatch(setAllProducts(data))
+
+    })
 
   }
+
+
+
 
   return (
     <div className='filter-container'>
