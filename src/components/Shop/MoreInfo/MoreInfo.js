@@ -16,15 +16,22 @@ function MoreInfo() {
   const { id } = useParams();
   const nav = useNavigate();
   const dispatch = useDispatch();
-  const { allProducts, loggedIn, cart, isAdmin, showReviews, currentUserName } = useSelector((state) => state.generalSlice);
+  const revievRef = useRef()
+  const itemAddedAlert = () => toast.success("Item added to cart");
+  const itemIsInCart = () => toast.error("Item is already in a cart");
+  const {
+    allProducts,
+    loggedIn,
+    cart,
+    isAdmin,
+    showReviews,
+    currentUserName
+  } = useSelector((state) => state.generalSlice);
   const singleProduct =
     allProducts &&
     allProducts.filter((product) => {
       return product._id === id;
     })[0];
-  const revievRef = useRef()
-  const itemAddedAlert = () => toast.success("Item added to cart");
-  const itemIsInCart = () => toast.error("Item is already in a cart");
 
   const redirect = () => {
     nav("/auth");
@@ -92,21 +99,18 @@ function MoreInfo() {
           <div className="more-info-text">
             <h2>{singleProduct.title}</h2>
             {loggedIn ? <button className="see-reviews-btn" onClick={seeReviews}>See reviews</button> : <button className="see-reviews-btn" onClick={() => nav('/auth')}>Login to see reviews</button>}
-            {showReviews &&
+            {showReviews && <div>
 
-              <div>
-                <div className="single-review">
+              {singleProduct.reviews.map((review, id) => {
+                return <p className="single-review" key={id}> <span className="review-author">{review.author}</span>: {review.text}</p>
+              })}
 
-                  {singleProduct.reviews.map((review, id) => {
-                    return <p key={id}> <span className="review-author">{review.author}</span>: {review.text}</p>
-                  })}
-
-                </div>
-                <div className="add-review">
-                  <input ref={revievRef} type="text" placeholder="add review" />
-                  <button onClick={() => addReview(singleProduct)}>add</button>
-                </div>
+              <div className="add-review">
+                <input ref={revievRef} type="text" placeholder="add review" />
+                <button onClick={() => addReview(singleProduct)}>add</button>
               </div>
+
+            </div>
             }
 
             <hr />

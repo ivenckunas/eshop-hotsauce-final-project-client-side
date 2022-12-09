@@ -46,6 +46,15 @@ nav {
   animation: slide-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
+.cart-length {
+  background-color: var(--textYellow);
+  color: var(--bgBlack);
+  position: absolute;
+  top: 10px;
+  padding: 5px;
+  border-radius: 8px;
+}
+
 .greet-user {
   background-color: var(--textYellow);
   color: black;

@@ -46,7 +46,7 @@ function Navbar() {
             {isAdmin && <Link to={'/product/add'}>Add product</Link>}
             <Link to={'/shop'}>Shop</Link>
             {loggedIn ?
-              <Link to={'/cart'}><FiShoppingCart /> {cart.length}</Link> : <Link to={'/auth'}>Login</Link>}
+              <Link to={'/cart'}><FiShoppingCart /> <span className='cart-length'>{cart.length}</span> </Link> : <Link to={'/auth'}>Login</Link>}
             {loggedIn ? <Link onClick={handleLogout}>Logout</Link> : ''}
           </div>
           <div className="nav-links-mobile">

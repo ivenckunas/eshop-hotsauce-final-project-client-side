@@ -1,20 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Cart.css'
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from 'react-redux'
 import { setCart } from '../../../store/generalStore'
 import { TiDeleteOutline } from 'react-icons/ti'
 import { ToastContainer, toast } from 'react-toastify';
+import io from "socket.io-client";
+
+const socket = io("http://localhost:4000");
 
 function Cart() {
 
   const dispatch = useDispatch()
   const { cart } = useSelector(state => state.generalSlice)
   const itemRemovedFromCart = () => toast.error("Item removed from cart");
-
-  const totalPrice = cart.reduce(function (total, item) {
-    return total + item.price;
-  }, 0);
 
   const removeFromCart = (_id) => {
     const filtered = cart.filter((item) => item._id !== _id)
@@ -24,6 +23,20 @@ function Cart() {
 
     }
   }
+
+  useEffect(() => {
+    socket.emit('cart', cart)
+  }, [])
+
+
+  const updateTotalPrice = (item) => {
+
+
+    socket.emit('cart', item)
+
+  }
+
+
 
   return (
     <div className='cart-container container'>
@@ -52,14 +65,14 @@ function Cart() {
             }} />
           </div>
         })}
+        {cart.length > 0 &&
+          <div className="cart-total-sidebar">
+            <h3>items in the cart: <span>{cart.length}</span></h3>
+            <h3>total price: <span>${cart.reduce((total, item) => total + item.price, 0).toFixed(2)}</span> </h3>
+            <button className='cart-checkout-btn'>proceed to checkout</button>
+          </div>
+        }
       </div>
-      {cart.length > 0 &&
-        <div className="cart-total-sidebar">
-          <h3>items in the cart: {cart.length}</h3>
-          <h3>total price: {totalPrice.toFixed(2)}$</h3>
-          <button>proceed to checkout</button>
-        </div>
-      }
     </div>
   )
 }
