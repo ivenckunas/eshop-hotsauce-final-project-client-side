@@ -13,6 +13,9 @@ export const generalSlice = createSlice({
     swiperArray: null,
     productToEdit: {},
     errorMessage: null,
+    showChat: false,
+    showReviews: false,
+    reviews: []
   },
 
   reducers: {
@@ -46,10 +49,16 @@ export const generalSlice = createSlice({
     setErrorMessage: (state, action) => {
       state.errorMessage = action.payload
     },
+    setShowChat: (state, action) => {
+      state.showChat = action.payload
+    },
+    setShowReviews: (state, action) => {
+      state.showReviews = action.payload
+    }
   }
 }
 )
 
-export const { setLoggedIn, setShowLinks, setIsAdmin, setCurrentUserId, setCurrentUserName, setAllProducts, setCart, setSwiperArray, setProductToEdit, setErrorMessage } = generalSlice.actions
+export const { setLoggedIn, setShowLinks, setIsAdmin, setCurrentUserId, setCurrentUserName, setAllProducts, setCart, setSwiperArray, setProductToEdit, setErrorMessage, setShowChat, setShowReviews } = generalSlice.actions
 
 export default generalSlice.reducer

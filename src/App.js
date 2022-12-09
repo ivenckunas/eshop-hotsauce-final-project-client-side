@@ -11,9 +11,18 @@ import Footer from './components/Footer/Footer';
 import CartPage from './pages/CartPage';
 import axios from 'axios';
 import MoreInfo from './components/Shop/MoreInfo/MoreInfo';
-import { setAllProducts, setCurrentUserId, setCurrentUserName, setIsAdmin, setLoggedIn, setProductToEdit } from './store/generalStore';
 import RegisterPage from './pages/RegisterPage';
 import EditPage from './pages/EditPage';
+import {
+  setAllProducts,
+  setCurrentUserId,
+  setCurrentUserName,
+  setIsAdmin,
+  setLoggedIn
+} from './store/generalStore';
+import io from 'socket.io-client'
+
+const socket = io('http://localhost:4000');
 
 
 
@@ -24,6 +33,14 @@ function App() {
 
 
   useEffect(() => {
+
+    socket.emit('allProducts')
+
+    socket.on('allProducts', data => {
+      dispatch(setAllProducts(data))
+    })
+
+
 
     localStorage.setItem('cart', JSON.stringify(cart))
 
@@ -49,12 +66,7 @@ function App() {
       })
       .catch(error => console.log(error))
 
-    axios.get('http://localhost:4000/product/all')
-      .then(resp => {
-        dispatch(setAllProducts(resp.data.data))
-      })
-
-  }, [dispatch, currentUserName, currentUserId, cart, productToEdit])
+  }, [cart, productToEdit, currentUserId, currentUserName, dispatch])
 
   return (
     <BrowserRouter>

@@ -21,7 +21,7 @@
   font-size: 2rem;
 }
 
-.more-info-text p {
+.more-info-text {
   padding: 1rem 0;
 }
 
@@ -57,4 +57,29 @@
 .more-info-edit-btn:hover,
 .more-info-delete-btn:hover {
   background-color: hsl(0, 85%, 30%);
+}
+
+
+.add-review button,
+.see-reviews-btn {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  background-color: var(--bgBlack);
+  color: var(--textWhite);
+}
+
+.single-review p {
+  font-size: 0.7rem;
+  padding: 0;
+  margin: 0;
+  padding-bottom: 0.5rem;
+}
+
+.review-author {
+  font-weight: 700;
+}
+
+.add-review input {
+  font-size: 0.9rem;
+  margin-right: 0.3rem;
 }
