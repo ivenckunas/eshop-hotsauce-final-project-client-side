@@ -6,6 +6,7 @@ import Filter from "../Filter/Filter";
 import { useEffect } from "react";
 import io from "socket.io-client";
 import { setAllProducts } from "../../../store/generalStore";
+import { Link, useParams } from "react-router-dom";
 
 const socket = io("http://localhost:4000");
 
@@ -15,12 +16,16 @@ function Shop() {
   const dispatch = useDispatch()
   const { allProducts } = useSelector((state) => state.generalSlice);
 
+  const { pageId } = useParams()
+
   useEffect(() => {
-    socket.emit('allProducts')
+
+    socket.emit('allProducts', pageId)
     socket.on('allProducts', data => {
       dispatch(setAllProducts(data))
     })
-  }, [])
+
+  }, [pageId])
 
 
   return (
@@ -33,8 +38,14 @@ function Shop() {
               return <SingleProduct key={id} id={id} product={product} />;
             })}
         </div>
+        <div className="shop-pages">
+          <Link to={'/shop/page/0'}>0</Link>
+          <Link to={'/shop/page/1'}>1</Link>
+          <Link to={'/shop/page/2'}>2</Link>
+          <Link to={'/shop/page/3'}>3</Link>
+        </div>
       </div>
-    </div>
+    </div >
   );
 }
 

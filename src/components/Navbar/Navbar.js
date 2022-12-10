@@ -44,9 +44,9 @@ function Navbar() {
           <div className={showLinks ? 'slide-left show-mobile ' : 'nav-links-dekstop'}>
             <Link to={'/'}>Home</Link>
             {isAdmin && <Link to={'/product/add'}>Add product</Link>}
-            <Link to={'/shop'}>Shop</Link>
+            <Link to={'/shop/page/0'}>Shop</Link>
             {loggedIn ?
-              <Link to={'/cart'}><FiShoppingCart /> <span className='cart-length'>{cart.length}</span> </Link> : <Link to={'/auth'}>Login</Link>}
+              <Link to={'/cart'}><FiShoppingCart /> <span className={cart.length > 0 ? 'cart-length' : ''}>{cart.length > 0 && cart.length}</span> </Link> : <Link to={'/auth'}>Login</Link>}
             {loggedIn ? <Link onClick={handleLogout}>Logout</Link> : ''}
           </div>
           <div className="nav-links-mobile">

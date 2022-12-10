@@ -20,6 +20,10 @@ function SingleProduct({ product }) {
     }
   };
 
+  const redirectToMoreInfo = (id) => {
+    nav(`/product/single/${id}`);
+  }
+
   const itemAddedAlert = () => toast.success("Item added to cart");
   const itemIsInCart = () => toast.error("Item is already in a cart");
 
@@ -27,17 +31,12 @@ function SingleProduct({ product }) {
     <div className="single-product">
       <ToastContainer position="bottom-left" autoClose={2000} hideProgressBar={true} newestOnTop={false} closeOnClick rtl={false} draggable theme="dark" />
 
-      <div
-        onClick={() => {
-          nav(`/product/single/${product._id}`);
-        }}
-        className="single-product-image"
-      >
+      <div onClick={() => redirectToMoreInfo(product._id)} className="single-product-image">
         <img src={product.image} alt="" />
       </div>
       <div className="single-product-info">
-        <h2>{product.title}</h2>
-        <h3>${product.price.toFixed(2)}</h3>
+        <h2 onClick={() => redirectToMoreInfo(product._id)}>{product.title}</h2>
+        <h3 onClick={() => redirectToMoreInfo(product._id)}>${product.price.toFixed(2)}</h3>
         <div className="single-product-btns">
           {loggedIn ? (
             <button

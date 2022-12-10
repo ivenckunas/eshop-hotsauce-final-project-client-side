@@ -1,0 +1,21 @@
+.single-article-card {
+  height: 350px;
+  max-width: 300px;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  text-align: center;
+  background-position: center;
+  transition: 0.2s;
+}
+
+.single-article-card h2 {
+  background: rgba(255, 255, 255, 0.507);
+  padding: 0.5rem;
+}
+
+.single-article-card:hover {
+  cursor: pointer;
+  opacity: 0.85;
+}

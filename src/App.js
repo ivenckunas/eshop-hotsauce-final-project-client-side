@@ -56,7 +56,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/shop" element={<ShopPage />} />
+        <Route path="/shop/page/:pageId" element={<ShopPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/auth" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />

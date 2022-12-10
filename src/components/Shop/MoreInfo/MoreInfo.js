@@ -59,7 +59,7 @@ function MoreInfo() {
       })
 
       setTimeout(() => {
-        nav('/shop')
+        nav('/shop/page/0')
       }, 500);
 
     }

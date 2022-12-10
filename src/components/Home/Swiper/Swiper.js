@@ -29,7 +29,10 @@ function SwiperJs() {
 
 
   return (
-    <div className="container">
+    <div className="container swiper-container">
+
+      <h2>TODAY'S TOP PICKS:</h2>
+
       <Swiper
         // install Swiper modules
         modules={[Navigation, Pagination, Scrollbar, A11y]}

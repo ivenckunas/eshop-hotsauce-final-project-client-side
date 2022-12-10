@@ -17,10 +17,32 @@
   width: 100%;
 }
 
+.shop-pages {
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.shop-pages a {
+  background-color: rgb(230, 230, 230);
+  text-align: center;
+  padding: 0.2rem;
+  margin: 0.3rem;
+}
+
+
+.shop-pages a:hover {
+  background-color: rgb(177, 177, 177);
+}
+
 img {
   margin-right: auto;
   margin-left: auto;
   object-fit: cover;
+}
+
+.disabled-link {
+  pointer-events: none;
+  color: slategray;
 }
 
 @media (max-width: 900px) and (min-width:769px) {

@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { setProductToEdit } from '../../../store/generalStore'
 import './Edit.css'
+import { ToastContainer, toast } from 'react-toastify';
 import io from "socket.io-client";
 
 const socket = io("http://localhost:4000");
@@ -51,12 +52,27 @@ function Edit() {
 
     if (titleRef.current.value && imageRef.current.value && priceRef.current.value && infoRef.current.value) {
       socket.emit('updateProduct', updatedProduct)
-      nav('/shop')
+      nav('/shop/page/0')
+    } else {
+      toast.error("Fields can't be empty!");
+      return
     }
   }
 
   return (
     <div className='container edit-container'>
+
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        draggable
+        theme="dark"
+      />
+
       <h2> EDIT PRODUCT DETAILS</h2>
       <input ref={titleRef} type="text" value={oldTitleVal} onChange={() => setTitleVal(titleRef.current.value)} />
       <input ref={imageRef} type="url" value={oldImageVal} onChange={() => setImageVal(imageRef.current.value)} />

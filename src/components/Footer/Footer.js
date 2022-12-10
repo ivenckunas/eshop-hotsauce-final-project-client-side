@@ -9,6 +9,18 @@ function Footer() {
     <footer>
 
       <div className="footer-container container">
+
+        <div className="footer-links">
+
+          <ul>
+            <li>About us</li>
+            <li>Scoville scale</li>
+            <li>Privacy Policy</li>
+            <li>Contact</li>
+          </ul>
+
+        </div>
+
         <div className="footer-social-links">
           <ul>
             <li>
