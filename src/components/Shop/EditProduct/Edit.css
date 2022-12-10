@@ -37,3 +37,9 @@
 .edit-save-changes-btn:hover {
   background-color: var(--hoverBlack);
 }
+
+@media (max-width: 768px) {
+  .edit-container {
+    width: 90%;
+  }
+}

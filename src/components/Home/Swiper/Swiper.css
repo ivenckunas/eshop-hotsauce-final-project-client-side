@@ -29,10 +29,8 @@
   font-size: 20px !important;
 }
 
-@media (max-width: 768px) {
-
-  .single-swiper-item img {
-    height: 200px;
+@media screen and (min-width: 768px) {
+  .swiper-container {
+    width: 768px;
   }
-
 }

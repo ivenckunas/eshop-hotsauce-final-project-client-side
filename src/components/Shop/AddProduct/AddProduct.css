@@ -37,3 +37,12 @@
 .add-product-btn:hover {
   background-color: var(--hoverBlack);
 }
+
+@media (max-width: 768px) {
+
+
+  .add-product-container {
+    width: 90%;
+  }
+
+}

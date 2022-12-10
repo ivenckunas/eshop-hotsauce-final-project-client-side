@@ -50,3 +50,18 @@ footer {
   cursor: pointer;
   color: rgba(255, 255, 255, 0.753);
 }
+
+@media (max-width: 768px) {
+
+  .footer-links {
+    align-items: center;
+  }
+
+  .footer-links ul {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 0;
+    gap: 0;
+  }
+
+}

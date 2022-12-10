@@ -138,3 +138,17 @@
     opacity: 1;
   }
 }
+
+@media (max-width: 768px) {
+
+
+  .more-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .more-info-img img {
+    max-height: 300px;
+  }
+
+}

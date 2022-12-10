@@ -10,3 +10,10 @@
   height: 150px;
 
 }
+
+@media (max-width: 768px) {
+
+  .about-container {
+    max-width: 90%;
+  }
+}

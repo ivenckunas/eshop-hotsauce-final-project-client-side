@@ -8,7 +8,7 @@ function Header() {
 
   return (
     <header>
-      <button onClick={() => nav('/shop')}>shop hot sauce</button>
+      <button onClick={() => nav('/shop/page/0')}>shop hot sauce</button>
     </header>
   )
 }
