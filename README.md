@@ -47,12 +47,6 @@ The project's purpose is to provide a platform for hot sauce enthusiasts to easi
 
 ![](https://i.imgur.com/8yZI4Dm.gif)
 
-## Logged in as admin(additional features)
-
-![](https://i.imgur.com/Uo9orZh.gif)
-
-![](https://i.imgur.com/mVQFDcH.gif)
-
 ---------------------------------
 
 # React App generated instructions
