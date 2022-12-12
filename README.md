@@ -1,4 +1,5 @@
 
+
 # MERN Project: Hot Sauce E-Shop
 
 Final assignment for CodeAcademy studies.
@@ -45,11 +46,18 @@ The project's purpose is to provide a platform for hot sauce enthusiasts to easi
 
 ## Demo
 
-![](https://i.imgur.com/8yZI4Dm.gif)
+![](https://i.imgur.com/demo1.gif)
+
+## Logged in as admin(additional features)
+
+![](https://i.imgur.com/demo2.gif)
+
+![](https://i.imgur.com/demo3.gif)
+
+
 
 ---------------------------------
 
-# React App generated instructions
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
