@@ -46,9 +46,9 @@ The project's purpose is to provide a platform for hot sauce enthusiasts to easi
 
 ## Demo
 
-![](https://i.imgur.com/mVQFDcH.gif)
-![](https://i.imgur.com/Uo9orZh.gif)
-![](https://i.imgur.com/8yZI4Dm.gif)
+![demo1](https://user-images.githubusercontent.com/97701289/207130508-8322a2bc-3a0e-40b2-b25a-960acfbe49c5.gif)
+![demo2](https://user-images.githubusercontent.com/97701289/207130544-0022d3bf-71de-49b4-99f7-8b51b6c5d60a.gif)
+![demo3](https://user-images.githubusercontent.com/97701289/207130560-dda478e6-d557-44f3-afb1-d318ddd0f376.gif)
 
 ---------------------------------
 
