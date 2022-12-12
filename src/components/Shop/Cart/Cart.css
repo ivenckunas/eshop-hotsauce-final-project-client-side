@@ -78,3 +78,14 @@
 .cart-checkout-btn:hover {
   background-color: var(--hoverBlack);
 }
+
+.cart-item-qty {
+  display: flex;
+  gap: 0.2rem;
+}
+
+@media (max-width: 768px) {
+  .cart-items {
+    margin: 0 auto;
+  }
+}

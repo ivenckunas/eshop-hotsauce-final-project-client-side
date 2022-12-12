@@ -1,5 +1,5 @@
 import "./MoreInfo.css";
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { setAllProducts, setCart, setShowReviews } from "../../../store/generalStore";
@@ -13,6 +13,7 @@ import io from 'socket.io-client'
 const socket = io('http://localhost:4000');
 
 function MoreInfo() {
+
   const { id } = useParams();
   const nav = useNavigate();
   const dispatch = useDispatch();
@@ -32,6 +33,8 @@ function MoreInfo() {
     allProducts.filter((product) => {
       return product._id === id;
     })[0];
+
+  useEffect(() => { window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }); }, [singleProduct])
 
   const redirect = () => {
     nav("/auth");
@@ -91,7 +94,7 @@ function MoreInfo() {
     <div className="container ">
       <ToastContainer position="bottom-left" autoClose={2000} hideProgressBar={true} newestOnTop={false} closeOnClick rtl={false} draggable theme="dark" />
 
-      {singleProduct && allProducts && (
+      {singleProduct && (
         <div className="more-info">
           <div className="more-info-img">
             <img src={singleProduct.image} alt="" />
@@ -154,6 +157,7 @@ function MoreInfo() {
       <hr />
       <h2>You may also like:</h2>
       {allProducts && <SwiperJs />}
+
     </div>
   );
 }

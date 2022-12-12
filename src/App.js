@@ -22,7 +22,9 @@ function App() {
   const dispatch = useDispatch();
   const { cart, currentUserId, currentUserName, productToEdit } = useSelector((state) => state.generalSlice);
 
+
   useEffect(() => {
+
     socket.emit("allProducts");
     socket.on("allProducts", (data) => {
       dispatch(setAllProducts(data));

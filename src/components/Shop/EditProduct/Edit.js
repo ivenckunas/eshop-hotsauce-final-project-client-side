@@ -2,7 +2,7 @@ import React from 'react'
 import { useRef } from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { setProductToEdit } from '../../../store/generalStore'
 import './Edit.css'
@@ -16,6 +16,7 @@ function Edit() {
   const nav = useNavigate()
   const dispatch = useDispatch()
   const id = useParams()
+  const { isAdmin } = useSelector(state => state.generalSlice)
   const titleRef = useRef()
   const imageRef = useRef()
   const priceRef = useRef()
@@ -28,7 +29,12 @@ function Edit() {
 
   useEffect(() => {
 
-    socket.emit('editProduct', id)
+    const editObj = {
+      id,
+      isAdmin
+    }
+
+    socket.emit('editProduct', editObj)
 
     socket.on('editProduct', data => {
       dispatch(setProductToEdit(data))
@@ -60,7 +66,7 @@ function Edit() {
   }
 
   return (
-    <div className='container edit-container'>
+    <div className='container '>
 
       <ToastContainer
         position="top-center"
@@ -72,13 +78,14 @@ function Edit() {
         draggable
         theme="dark"
       />
-
-      <h2> EDIT PRODUCT DETAILS</h2>
-      <input ref={titleRef} type="text" value={oldTitleVal} onChange={() => setTitleVal(titleRef.current.value)} />
-      <input ref={imageRef} type="url" value={oldImageVal} onChange={() => setImageVal(imageRef.current.value)} />
-      <input ref={priceRef} type="number" value={oldPriceVal} onChange={() => setPriceVal(priceRef.current.value)} />
-      <textarea ref={infoRef} type="text" value={oldInfoVal} onChange={() => setInfoVal(infoRef.current.value)} />
-      <button onClick={handleEdit} className='edit-save-changes-btn'>save changes</button>
+      {isAdmin ? <div className="edit-container">
+        <h2> EDIT PRODUCT DETAILS</h2>
+        <input ref={titleRef} type="text" value={oldTitleVal} onChange={() => setTitleVal(titleRef.current.value)} />
+        <input ref={imageRef} type="url" value={oldImageVal} onChange={() => setImageVal(imageRef.current.value)} />
+        <input ref={priceRef} type="number" value={oldPriceVal} onChange={() => setPriceVal(priceRef.current.value)} />
+        <textarea ref={infoRef} type="text" value={oldInfoVal} onChange={() => setInfoVal(infoRef.current.value)} />
+        <button onClick={handleEdit} className='edit-save-changes-btn'>save changes</button>
+      </div> : <div className='access'> <p>CAN'T ACCESS</p></div>}
     </div>
   )
 }

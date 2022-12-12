@@ -5,7 +5,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import { useSelector } from 'react-redux';
-import { Navigation, Pagination, Scrollbar, A11y, EffectFade } from 'swiper';
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useNavigate } from 'react-router-dom';
 
@@ -14,12 +14,12 @@ function SwiperJs() {
 
   const { allProducts } = useSelector(state => state.generalSlice)
 
-  const shuffleProducts = allProducts
-    .map(value => ({ value, sort: Math.random() }))
-    .sort((a, b) => a.sort - b.sort)
-    .map(({ value }) => value)
+  // const shuffleProducts = allProducts
+  //   .map(value => ({ value, sort: Math.random() }))
+  //   .sort((a, b) => a.sort - b.sort)
+  //   .map(({ value }) => value)
 
-  const swiperArray = shuffleProducts.slice(1, 6)
+  const swiperArray = allProducts.slice(1, 6)
 
   const nav = useNavigate()
 
@@ -55,8 +55,6 @@ function SwiperJs() {
           },
         }}
       >
-
-
 
         {swiperArray.map((item, id) => {
           return <SwiperSlide onClick={() => navigateToSingleProduct(item._id)} key={id} className='single-swiper-item'>

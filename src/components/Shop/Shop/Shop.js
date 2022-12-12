@@ -13,6 +13,8 @@ const socket = io("http://localhost:4000");
 
 function Shop() {
 
+
+
   const dispatch = useDispatch()
   const { allProducts } = useSelector((state) => state.generalSlice);
 
@@ -27,7 +29,6 @@ function Shop() {
 
   }, [pageId])
 
-
   return (
     <div>
       <div className="container">
@@ -39,10 +40,10 @@ function Shop() {
             })}
         </div>
         <div className="shop-pages">
-          <Link to={'/shop/page/0'}>0</Link>
-          <Link to={'/shop/page/1'}>1</Link>
-          <Link to={'/shop/page/2'}>2</Link>
-          <Link to={'/shop/page/3'}>3</Link>
+          <Link to={'/shop/page/0'}>1</Link>
+          <Link to={'/shop/page/1'}>2</Link>
+          <Link to={'/shop/page/2'}>3</Link>
+          <Link to={'/shop/page/3'}>4</Link>
         </div>
       </div>
     </div >
