@@ -30,8 +30,9 @@ function AddProduct() {
       title: titleRef.current.value,
       price: priceRef.current.value,
       info: infoRef.current.value,
-      admin: isAdmin
+      isAdmin
     }
+
 
     if (imageRef.current.value && titleRef.current.value && priceRef.current.value && infoRef.current.value) {
       socket.emit('addProduct', newProduct)
